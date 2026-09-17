@@ -1,0 +1,188 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A monitored brand/company domain project configured for AI Search Revenue intelligence.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "websiteUrl": { "type": "string", "format": "uri" },
+        "companyName": { "type": "string" },
+        "industry": { "type": "string" },
+        "targetAudience": { "type": "string" },
+        "targetMarket": { "type": "string" },
+        "competitors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "archived", "draft"]
+        },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "websiteUrl", "companyName", "status", "createdAt", "updatedAt"]
+    },
+    "AnalysisRun": {
+      "title": "AnalysisRun",
+      "description": "An AI search visibility analysis execution linked to a specific Project.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["queued", "running", "completed", "failed"]
+        },
+        "startedAt": { "type": "string" },
+        "completedAt": { "type": "string" },
+        "error": { "type": "string" },
+        "progressStage": { "type": "string" },
+        "crawledPagesCount": { "type": "number" },
+        "queriesCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "projectId", "status", "createdAt"]
+    },
+    "WebsitePage": {
+      "title": "WebsitePage",
+      "description": "A crawled and extracted page from the target project website.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "runId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "headings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "contentSnippet": { "type": "string" },
+        "statusCode": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "runId", "projectId", "url", "createdAt"]
+    },
+    "WebsiteAnalysis": {
+      "title": "WebsiteAnalysis",
+      "description": "Structured business understanding synthesized by Gemini from crawled website content.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "runId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "companyDescription": { "type": "string" },
+        "productsServices": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "industryCategory": { "type": "string" },
+        "targetCustomers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "useCases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "importantTopics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "competitorsMentioned": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "runId", "projectId", "companyDescription", "createdAt"]
+    },
+    "SearchQuery": {
+      "title": "SearchQuery",
+      "description": "High-intent customer query generated from the business intelligence model.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "runId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "query": { "type": "string" },
+        "intent": { "type": "string" },
+        "buyerPersona": { "type": "string" },
+        "estimatedFunnelStage": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "runId", "projectId", "query", "intent", "createdAt"]
+    },
+    "AISearchResult": {
+      "title": "AISearchResult",
+      "description": "Actual AI search provider query evaluation, brand mention, recommendation, and citations.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "runId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "queryId": { "type": "string" },
+        "query": { "type": "string" },
+        "provider": { "type": "string" },
+        "model": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "responseText": { "type": "string" },
+        "isSearchGrounded": { "type": "boolean" },
+        "brandMentioned": { "type": "boolean" },
+        "brandRecommended": { "type": "boolean" },
+        "competitorsMentioned": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "recommendationContext": { "type": "string" },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uri": { "type": "string" },
+              "title": { "type": "string" }
+            },
+            "required": ["uri", "title"]
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["completed", "failed"]
+        },
+        "error": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "runId", "projectId", "queryId", "query", "provider", "model", "responseText", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Monitored company brand projects"
+    },
+    "/analysis_runs/{runId}": {
+      "schema": "AnalysisRun",
+      "description": "Analysis run instances for projects"
+    },
+    "/website_pages/{pageId}": {
+      "schema": "WebsitePage",
+      "description": "Crawled website pages for analysis runs"
+    },
+    "/website_analyses/{analysisId}": {
+      "schema": "WebsiteAnalysis",
+      "description": "Synthesized business analyses from website content"
+    },
+    "/search_queries/{queryId}": {
+      "schema": "SearchQuery",
+      "description": "Generated customer search queries"
+    },
+    "/ai_search_results/{resultId}": {
+      "schema": "AISearchResult",
+      "description": "Evaluated AI search provider responses, brand mentions, and citations"
+    }
+  }
+}

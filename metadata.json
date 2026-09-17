@@ -1,0 +1,6 @@
+{
+  "name": "AIVista — AI Search Revenue Agent",
+  "description": "AI Search Revenue Agent investigating brand visibility, competitor performance, citation intelligence, and high-impact revenue opportunities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

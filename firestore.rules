@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Projects collection
+    match /projects/{projectId} {
+      allow read, write: if true;
+    }
+
+    // Analysis runs collection
+    match /analysis_runs/{runId} {
+      allow read, write: if true;
+    }
+
+    // Website pages crawled
+    match /website_pages/{pageId} {
+      allow read, write: if true;
+    }
+
+    // Website analyses from Gemini
+    match /website_analyses/{analysisId} {
+      allow read, write: if true;
+    }
+
+    // Search queries generated
+    match /search_queries/{queryId} {
+      allow read, write: if true;
+    }
+
+    // AI search evaluation results
+    match /ai_search_results/{resultId} {
+      allow read, write: if true;
+    }
+
+    // Experiments collection
+    match /experiments/{experimentId} {
+      allow read, write: if true;
+    }
+
+    // Fallback collection access
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
