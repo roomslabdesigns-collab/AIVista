@@ -73,3 +73,10 @@ Generate and prioritize an experiment
 The existing investigation interface implements this nine-stage workflow, including website analysis, query generation, AI-response testing, competitor analysis, citation investigation, diagnosis, and recommendation synthesis.
 
 AIVista turns AI-search observations into actionable revenue intelligence.
+
+<img width="1899" height="860" alt="5" src="https://github.com/user-attachments/assets/7b336289-5737-456b-8ad2-d7cb5924688c" />
+<img width="1898" height="860" alt="4" src="https://github.com/user-attachments/assets/ed16a6fd-fd4f-4fa2-b3db-5afa9023b5bf" />
+<img width="1899" height="860" alt="3" src="https://github.com/user-attachments/assets/84b01e9e-19c1-464d-a470-56a6d523f62d" />
+<img width="1901" height="864" alt="2" src="https://github.com/user-attachments/assets/90a9f5d8-920f-4559-8450-787e35014514" />
+<img width="1900" height="862" alt="1" src="https://github.com/user-attachments/assets/4f9cdabf-e35e-4fa8-9626-bb59a8e29126" />
+<img width="1894" height="884" alt="6" src="https://github.com/user-attachments/assets/3c4685b4-8570-4cac-9dfe-3b0aa5adf8f5" />
